@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-const host = 'https://inotebook-production-2fca.up.railway.app'
+const host = 'https://inotebook-backend-ugl0.onrender.com'
 function Login(props) {
     const [credentials, setCredentials] = useState({ email: "", password: "" })
     let history = useNavigate();
