@@ -2,7 +2,7 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 function Signup(props) {
-  const host = 'http://localhost:5000'
+  const host = 'https://inotebook-production-2fca.up.railway.app'
    let history = useNavigate()
   const [credentials, setCredentials] = useState({sname:"", email: "", password: "" ,cpassword:"" })
     const handleSubmit = async (e) => {
