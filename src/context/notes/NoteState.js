@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import NoteContext from "./noteContext";
 
 const NoteState = (props) => {
-  const host = 'http://localhost:5000'
+const host = 'https://inotebook-production-2fca.up.railway.app'
+
   const notesIntial =
     []
   const [notes, setNotes] = useState(notesIntial)
@@ -25,30 +26,18 @@ const NoteState = (props) => {
   }
 
   // Add a note 
-  const addNote = async( title, description, tag) => {
-    // todo api call
-    const response = await fetch(`${host}/api/notes/addnote`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'auth-token': localStorage.getItem('token')
-        },
-        body: JSON.stringify({title,description,tag})
-      });
-   console.log(response)
-    // logic 
-    console.log("adding a new note")
-    const note = {
-      "_id": "683f1ae2e8cd7c550319c6ae1",
-      "user": "683df294d8a8969305ffc613",
-      "title": title,
-      "description": description,
-      "tag": tag,
-      "__v": 0
-    };
-    setNotes(notes.concat(note))
-  }
+const addNote = async (title, description, tag) => {
+  const response = await fetch(`${host}/api/notes/addnote`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'auth-token': localStorage.getItem('token')
+    },
+    body: JSON.stringify({ title, description, tag })
+  });
+  const note = await response.json();  // ✅ Use API response
+  setNotes(notes.concat(note));
+}
 
   // Delete a Note
   const deleteNote = async(id) => {
